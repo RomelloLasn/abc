@@ -2,6 +2,7 @@ import express from 'express'
 import dotenv from 'dotenv'
 import authRoutes from './routes/authRoutes.js'
 import todoRoutes from './routes/todoRoutes.js'
+import weatherRoutes from './routes/weatherRoutes.js'
 import { apiLimiter, authLimiter } from './middleware/rateLimiter.js'
 
 dotenv.config()
@@ -16,6 +17,7 @@ app.use('/api/auth', authLimiter)
 
 app.use('/api/auth', authRoutes)
 app.use('/api/todos', todoRoutes)
+app.use('/api/weather', weatherRoutes)
 
 app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}`)
