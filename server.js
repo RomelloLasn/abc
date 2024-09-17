@@ -2,16 +2,22 @@ import express from 'express'
 import dotenv from 'dotenv'
 import helmet from 'helmet'
 import cors from 'cors'
+import swaggerJsdoc from 'swagger-jsdoc'
+import swaggerUi from 'swagger-ui-express'
 import authRoutes from './routes/authRoutes.js'
 import todoRoutes from './routes/todoRoutes.js'
 import weatherRoutes from './routes/weatherRoutes.js'
 import { apiLimiter, authLimiter } from './middleware/rateLimiter.js'
 import { getHealthStatus } from './utils/healthCheck.js'
+import { swaggerOptions } from './utils/swaggerConfig.js'
 
 dotenv.config()
 
 const PORT = process.env.PORT || 3006
 const app = express()
+
+const swaggerDocs = swaggerJsdoc(swaggerOptions)
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs))
 
 app.use(express.json())
 app.use(helmet())
@@ -31,4 +37,5 @@ app.get('/health', async (req, res) => {
 
 app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}`)
+    console.log(`API Documentation available at http://localhost:${PORT}/api-docs`)
 })

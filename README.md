@@ -46,6 +46,35 @@ This is a Node.js backend application that provides weather information, todo ma
 
 2. The server will start running on `http://localhost:3006` (or the port you specified in the .env file).
 
+## API Documentation
+
+API documentation is available via Swagger UI. After starting the server, you can access the documentation at:
+
+http://localhost:3006/api-docs
+
+This interactive documentation allows you to explore and test the API endpoints directly from your browser.
+
+### Using Swagger UI
+
+1. Navigate to the Swagger UI URL (http://localhost:3006/api-docs) in your web browser.
+2. You'll see a list of all available endpoints grouped by tags (Auth, Todos, Weather).
+3. Click on an endpoint to expand it and see detailed information about:
+   - Required parameters
+   - Request body schema (for POST and PUT requests)
+   - Possible response codes and their meanings
+   - Response body schema
+4. For protected routes (those requiring authentication):
+   - Click the "Authorize" button at the top of the page
+   - Enter your JWT token (obtained from the login endpoint)
+   - Now you can test protected endpoints directly from Swagger UI
+
+### Updating Swagger Documentation
+
+The Swagger documentation is generated from JSDoc comments in the route files. To update the documentation:
+
+1. Modify the JSDoc comments in the relevant route files (`authRoutes.js`, `todoRoutes.js`, `weatherRoutes.js`).
+2. Restart the server to see the updated documentation.
+
 ## API Endpoints
 
 - `/api/auth`: Authentication routes (register, login)
@@ -61,6 +90,7 @@ This is a Node.js backend application that provides weather information, todo ma
 - Rate limiting
 - CORS enabled
 - Security headers with Helmet
+- API documentation with Swagger
 
 ## Development
 
@@ -83,3 +113,11 @@ Please read CONTRIBUTING.md for details on our code of conduct, and the process 
 ## License
 
 This project is licensed under the ISC License - see the LICENSE.md file for details.
+
+## API Documentation
+
+API documentation is available via Swagger UI. After starting the server, you can access the documentation at:
+
+http://localhost:3006/api-docs
+
+This interactive documentation allows you to explore and test the API endpoints directly from your browser.
