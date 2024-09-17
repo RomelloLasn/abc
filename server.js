@@ -1,5 +1,6 @@
 import express from 'express'
 import dotenv from 'dotenv'
+import helmet from 'helmet'
 import authRoutes from './routes/authRoutes.js'
 import todoRoutes from './routes/todoRoutes.js'
 import weatherRoutes from './routes/weatherRoutes.js'
@@ -12,6 +13,7 @@ const PORT = process.env.PORT || 3006
 const app = express()
 
 app.use(express.json())
+app.use(helmet())
 
 app.use('/api', apiLimiter)
 app.use('/api/auth', authLimiter)
