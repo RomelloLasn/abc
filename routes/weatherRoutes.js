@@ -2,6 +2,7 @@ import express from 'express';
 import { getWeather } from '../controllers/weatherController.js';
 import { apiLimiter } from '../middleware/rateLimiter.js';
 import { authenticateToken } from '../middleware/auth.js';
+import logger from '../utils/logger.js';
 
 const router = express.Router();
 
@@ -26,6 +27,9 @@ const router = express.Router();
  *       429:
  *         description: Too many requests
  */
-router.get('/:city', apiLimiter, authenticateToken, getWeather);
+router.get('/:city', apiLimiter, authenticateToken, (req, res, next) => {
+  logger.info(`Weather request for city: ${req.params.city}`);
+  getWeather(req, res, next);
+});
 
 export default router;

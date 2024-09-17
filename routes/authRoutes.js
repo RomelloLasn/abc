@@ -1,5 +1,6 @@
 import express from 'express'
 import { register, login } from '../controllers/authController.js'
+import logger from '../utils/logger.js'
 
 const router = express.Router()
 
@@ -31,7 +32,10 @@ const router = express.Router()
  *       500:
  *         description: Error registering user
  */
-router.post('/register', register)
+router.post('/register', (req, res, next) => {
+  logger.info(`Registration attempt for username: ${req.body.username}`);
+  register(req, res, next);
+})
 
 /**
  * @swagger
@@ -68,6 +72,9 @@ router.post('/register', register)
  *       500:
  *         description: Error logging in
  */
-router.post('/login', login)
+router.post('/login', (req, res, next) => {
+  logger.info(`Login attempt for username: ${req.body.username}`);
+  login(req, res, next);
+})
 
 export default router

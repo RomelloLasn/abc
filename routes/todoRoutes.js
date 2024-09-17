@@ -1,6 +1,7 @@
 import express from 'express'
 import { createTodo, getTodos, updateTodo, deleteTodo, getTodoById } from '../controllers/todoController.js'
 import { authenticateToken } from '../middleware/auth.js'
+import logger from '../utils/logger.js'
 
 const router = express.Router()
 
@@ -35,7 +36,10 @@ router.use(authenticateToken)
  *       500:
  *         description: Error creating todo
  */
-router.post('/', createTodo)
+router.post('/', (req, res, next) => {
+  logger.info(`Creating new todo for user: ${req.user.id}`);
+  createTodo(req, res, next);
+})
 
 /**
  * @swagger
@@ -68,7 +72,10 @@ router.post('/', createTodo)
  *       500:
  *         description: Error fetching todos
  */
-router.get('/', getTodos)
+router.get('/', (req, res, next) => {
+  logger.info(`Fetching todos for user: ${req.user.id}`);
+  getTodos(req, res, next);
+})
 
 /**
  * @swagger
@@ -94,7 +101,10 @@ router.get('/', getTodos)
  *       500:
  *         description: Error fetching todo
  */
-router.get('/:id', getTodoById)
+router.get('/:id', (req, res, next) => {
+  logger.info(`Fetching todo ${req.params.id} for user: ${req.user.id}`);
+  getTodoById(req, res, next);
+})
 
 /**
  * @swagger
@@ -133,7 +143,10 @@ router.get('/:id', getTodoById)
  *       500:
  *         description: Error updating todo
  */
-router.put('/:id', updateTodo)
+router.put('/:id', (req, res, next) => {
+  logger.info(`Updating todo ${req.params.id} for user: ${req.user.id}`);
+  updateTodo(req, res, next);
+})
 
 /**
  * @swagger
@@ -159,6 +172,9 @@ router.put('/:id', updateTodo)
  *       500:
  *         description: Error deleting todo
  */
-router.delete('/:id', deleteTodo)
+router.delete('/:id', (req, res, next) => {
+  logger.info(`Deleting todo ${req.params.id} for user: ${req.user.id}`);
+  deleteTodo(req, res, next);
+})
 
 export default router

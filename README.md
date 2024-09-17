@@ -91,6 +91,16 @@ The Swagger documentation is generated from JSDoc comments in the route files. T
 - CORS enabled
 - Security headers with Helmet
 - API documentation with Swagger
+- Comprehensive logging system
+- Error handling middleware
+- Health check endpoint
+
+## Logging
+
+The application uses Winston for logging. Logs are written to:
+- `error.log`: For error level logs
+- `combined.log`: For all logs
+- Console output in development environment
 
 ## Development
 
@@ -105,6 +115,12 @@ For production deployment, consider the following:
 - Set up a reverse proxy with Nginx or Apache
 - Use SSL/TLS for secure communication
 - Implement proper logging and monitoring
+- Set up log rotation for log files
+- Configure environment variables for production settings
+
+## Error Handling
+
+The application includes centralized error handling middleware. Uncaught exceptions and unhandled promise rejections are also logged and handled to prevent application crashes.
 
 ## Contributing
 
@@ -113,11 +129,3 @@ Please read CONTRIBUTING.md for details on our code of conduct, and the process 
 ## License
 
 This project is licensed under the ISC License - see the LICENSE.md file for details.
-
-## API Documentation
-
-API documentation is available via Swagger UI. After starting the server, you can access the documentation at:
-
-http://localhost:3006/api-docs
-
-This interactive documentation allows you to explore and test the API endpoints directly from your browser.
