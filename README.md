@@ -1,4 +1,4 @@
-# Weather API Backend
+# NODE API Backend
 
 This is a Node.js backend application that provides weather information, todo management, and user authentication.
 
