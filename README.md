@@ -121,11 +121,3 @@ For production deployment, consider the following:
 ## Error Handling
 
 The application includes centralized error handling middleware. Uncaught exceptions and unhandled promise rejections are also logged and handled to prevent application crashes.
-
-## Contributing
-
-Please read CONTRIBUTING.md for details on our code of conduct, and the process for submitting pull requests.
-
-## License
-
-This project is licensed under the ISC License - see the LICENSE.md file for details.
