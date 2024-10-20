@@ -43,5 +43,4 @@ app.use((err, req, res, next) => {
 });
 
 export default app; // Export the app object
-
 // This is a test comment to trigger CI
